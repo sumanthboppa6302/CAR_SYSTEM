@@ -1,0 +1,39 @@
+CREATE TABLE users (
+    user_id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    name VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE cabs (
+    cab_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    price_per_minute DECIMAL(8, 2) NOT NULL
+);
+
+CREATE TABLE routes (
+    route_id INT AUTO_INCREMENT PRIMARY KEY,
+    source VARCHAR(255) NOT NULL,
+    destination VARCHAR(255) NOT NULL,
+    time_minutes INT NOT NULL
+);
+
+CREATE TABLE bookings (
+    booking_id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    source VARCHAR(255) NOT NULL,
+    destination VARCHAR(255) NOT NULL,
+    car VARCHAR(255) NOT NULL, -- Add this line
+    price_per_minute DECIMAL(8, 2) NOT NULL, -- Add this line
+    total_cost DECIMAL(8, 2) NOT NULL, -- Add this line
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+INSERT INTO users (user_id,email, name) VALUES (1,'user@example.com', 'John Doe');
+
+INSERT INTO cabs (cab_id,price_per_minute) VALUES (1,0.50);
+
+INSERT INTO routes (route_id,source, destination, time_minutes) VALUES (1,'A', 'B', 5);
+
+INSERT INTO bookings (user_id, source, destination, car, price_per_minute, total_cost) 
+VALUES (1, 'A', 'B', 1, 5, 2.50);
